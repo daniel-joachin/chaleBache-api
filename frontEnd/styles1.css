@@ -1,0 +1,60 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: fantasy;
+}
+
+header{
+    
+    height: 105px;
+    background: cyan;
+    font-size: 30px;
+    
+}
+
+h1{
+    font-size: 60px;
+    text-align: center;
+}
+
+.main{
+    margin-top: 2%;
+    height: auto;
+}
+
+h2{
+    text-align: center;
+}
+
+
+#map{
+    background: red;
+    
+}
+
+.mapaBaches{
+    height: 800px;
+}
+
+#info{
+    background: cyan;
+}
+
+.infoBache{
+
+    height: 400px;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: cyan;
+    color: white;
+    text-align: center;
+}
+
+li{
+    list-style: none;
+}
