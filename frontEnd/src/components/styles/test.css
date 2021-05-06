@@ -1,0 +1,20 @@
+.testHeader{
+    background: grey;
+    
+    height: 10vh;
+    font-weight: 100%;
+    margin-bottom: 3vh;
+    
+    border-radius: 3px;
+    line-height: 10vh;
+    
+    
+}
+
+#titulo{
+    text-align: center;
+    font-family: Krone;
+}
+.app{
+    display: flex;
+}
