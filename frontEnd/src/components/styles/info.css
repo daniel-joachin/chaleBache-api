@@ -1,0 +1,14 @@
+.infoBaches{
+    padding-left: 1.5vw;
+    list-style-type: none;
+    
+}
+
+.infoBaches ul{
+    list-style-type: none;
+    text-align: left;
+}
+#nameBache{
+    text-align: center;
+    font-size: 25px;
+}
