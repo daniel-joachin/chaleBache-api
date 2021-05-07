@@ -24,8 +24,6 @@ const  [potholes, setpotholes] = useState([])
   //   potholes = await axios.get('/api/pothole')
   // })
 
-  
-
   return (
     <Map
       item

@@ -1,19 +1,20 @@
-import r from 'rethinkdb'
+import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+
 dotenv.config()
 
-const db = async () => {
-  try{
-    const conn = await r.connect({
-      host: process.env.RETHINKDB_HOST,
-      port: process.env.RETHINKDB_PORT,
-      db: process.env.RETHINKDB_NAME
+const connection = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
     })
-    
   } catch (error) {
-    console.log(error.message);
+    console.log(`Error: ${error.message}`)
     process.exit(1)
   }
 }
 
-export default db
+export default connection
