@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import { BacheContext } from '../components/bacheContext'
+import axios from 'axios';
 
 const style = {
   width: '75vw',
@@ -10,9 +11,20 @@ const style = {
 function GoogleMapsContainer (props) {
   const { setBache } = useContext(BacheContext)
 
+const  [potholes, setpotholes] = useState([])
+
   const changeBache = (obj) => {
     setBache(obj)
   }
+
+
+
+  useEffect(()=>{
+
+    potholes = await axios.get('/api/pothole')
+  })
+
+  
 
   return (
     <Map
@@ -35,6 +47,7 @@ function GoogleMapsContainer (props) {
         position = {{ lat: 20.744, lng: -103.452 }}
         name = { 'Señor Bache' }
       />
+      
     </Map>
   );
 }
