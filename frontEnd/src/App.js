@@ -1,12 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import Test from './components/test';
 import Map from './components/map';
 import BacheInfo from './components/bacheInfo';
-import Grid from '@material-ui/core/Grid';
-import {useState} from React;
 import React from 'react';
-import BacheContext from './components/bacheContext';
+import { BacheProvider } from './components/bacheContext';
 
 
 function App() {
@@ -22,12 +19,6 @@ function App() {
         </BacheProvider>
         
       </div>
-
-
-
-      
-      
-      
     </div>
   );
 }

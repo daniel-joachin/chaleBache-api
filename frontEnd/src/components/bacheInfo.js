@@ -1,17 +1,18 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react'
+import { BacheContext } from './bacheContext'
 import './styles/info.css'
 
-export default class BacheInfo extends Component {
-    render() {
-        return (
-            <div className="infoBaches">
+function BacheInfo () {
+    const {bache } = useContext(BacheContext)
 
-                <ul>
-                    <li id="nameBache">{this.props.name}</li>
-                    <li>Ubicación:  {this.props.location}</li>
-                    <li>Seriedad: {this.props.seriedad}</li>
-                </ul>
-            </div>
-        )
-    }
+    return (
+        <div className="infoBaches">
+            <ul>
+                <li>{bache.name}</li>
+                <li>{bache.title}</li>
+            </ul>
+        </div>
+    )
 }
+
+export default BacheInfo

@@ -1,94 +1,42 @@
-import React, { Component } from 'react'
-import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
+import React, { useContext } from 'react'
+import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
+import { BacheContext } from '../components/bacheContext'
 
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-//import { typography } from 'material-ui/styles';
+const style = {
+  width: '75vw',
+  height: '75vh',
+}
 
-class GoogleMapsContainer extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {}
-      }
-      // binding this to event-handler functions
-      this.onMarkerClick = this.onMarkerClick.bind(this);
-      this.onMapClick = this.onMapClick.bind(this);
-    }
-    onMarkerClick = (props, marker, e) => {
-      this.setState({
-        selectedPlace: props,
-        activeMarker: marker,
-        showingInfoWindow: true
-        
-      });
+function GoogleMapsContainer (props) {
+  const { setBache } = useContext(BacheContext)
 
-
-    }
-    onMapClick = (props) => {
-      if (this.state.showingInfoWindow) {
-        this.setState({
-          showingInfoWindow: false,
-          activeMarker: null
-        });
-      }
-    }
-    render() {
-      const style = {
-        width: '75vw',
-        height: '75vh',
-        
-      }
-      return (
-        <contextBache.consumer>
-          <Map
-          item
-          xs = { 12 }
-          style = { style }
-          google = { this.props.google }
-          onClick = { this.onMapClick }
-          zoom = { 14 }
-          initialCenter = {{ lat: 20.733, lng: -103.452 }}
-        >
-          <Marker
-            onClick = { this.onMarkerClick }
-            title = { 'Changing Colors Garage' }
-            position = {{ lat: 20.733, lng: -103.452 }}
-            name = { 'Changing Colors Garage' }
-          />
-          <Marker
-            onClick = { this.onMarkerClick }
-            title = { 'Changing Colors Garage' }
-            position = {{ lat: 20.8, lng: -103.452 }}
-            name = { 'Changing Colors Garage' }
-          />
-          <InfoWindow
-            marker = { this.state.activeMarker }
-            visible = { this.state.showingInfoWindow }
-          >
-            <Paper>
-              <Typography
-                variant = 'headline'
-                component = 'h4'
-              >
-                Changing Colors Garage
-              </Typography>
-              <Typography
-                component = 'p'
-              >
-                98G Albe Dr Newark, DE 19702 <br />
-                302-293-8627
-              </Typography>
-            </Paper>
-          </InfoWindow>
-        </Map>
-        </contextBache.consumer>
-        
-      );
-    }
+  const changeBache = (obj) => {
+    setBache(obj)
   }
-  export default GoogleApiWrapper({
-      api: 'AIzaSyCK7OlpjunyTdWaF1NJ4RblpysJAWm1KBo'
-  })(GoogleMapsContainer)
+
+  return (
+    <Map
+      item
+      xs = { 12 }
+      style = { style }
+      google = { props.google }
+      zoom = { 14 }
+      initialCenter = {{ lat: 20.733, lng: -103.452 }}
+    >
+      <Marker
+        onClick = {(props)=>{changeBache({ title: props.title, name: props.name })}}
+        title = { 'Bache 1' }
+        position = {{ lat: 20.733, lng: -103.452 }}
+        name = { 'Lord Bache' }
+      />
+      <Marker
+        onClick = {(props)=>{changeBache({ title: props.title, name: props.name })}}
+        title = { 'Bache 2' }
+        position = {{ lat: 20.744, lng: -103.452 }}
+        name = { 'Señor Bache' }
+      />
+    </Map>
+  );
+}
+
+export default GoogleApiWrapper({ api: 'AIzaSyCK7OlpjunyTdWaF1NJ4RblpysJAWm1KBo'})(GoogleMapsContainer)
