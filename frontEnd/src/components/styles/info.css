@@ -7,8 +7,14 @@
 .infoBaches ul{
     list-style-type: none;
     text-align: left;
+    
 }
-#nameBache{
+#bacheName{
     text-align: center;
     font-size: 25px;
+    margin-bottom: 3vh;
+}
+
+.infoBaches li{
+    margin-bottom: 1vh;
 }

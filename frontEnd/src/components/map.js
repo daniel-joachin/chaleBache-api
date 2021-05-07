@@ -19,10 +19,10 @@ const  [potholes, setpotholes] = useState([])
 
 
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    potholes = await axios.get('/api/pothole')
-  })
+  //   potholes = await axios.get('/api/pothole')
+  // })
 
   
 
@@ -36,16 +36,22 @@ const  [potholes, setpotholes] = useState([])
       initialCenter = {{ lat: 20.733, lng: -103.452 }}
     >
       <Marker
-        onClick = {(props)=>{changeBache({ title: props.title, name: props.name })}}
+        onClick = {(props)=>{changeBache({ title: props.title, name: props.name, 
+          fIncident: props.fIncident, lIncident: props.lIncident, numIncidents: props.numIncidents })}}
         title = { 'Bache 1' }
         position = {{ lat: 20.733, lng: -103.452 }}
-        name = { 'Lord Bache' }
+        //name = { 'Lord Bache' }
+        fIncident = '06/05/2021'
+        lIncident = '06/05/2021'
+        numIncidents = {1}
       />
+
+      {/* referencia */}
       <Marker
         onClick = {(props)=>{changeBache({ title: props.title, name: props.name })}}
         title = { 'Bache 2' }
         position = {{ lat: 20.744, lng: -103.452 }}
-        name = { 'Señor Bache' }
+        //name = { 'Señor Bache' }
       />
       
     </Map>

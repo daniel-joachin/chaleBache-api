@@ -8,8 +8,11 @@ function BacheInfo () {
     return (
         <div className="infoBaches">
             <ul>
-                <li>{bache.name}</li>
-                <li>{bache.title}</li>
+                {/* <li>{bache.name}</li> */}
+                <li id="bacheName">{bache.title}</li>
+                <li>Fecha de nacimiento:  {bache.fIncident}</li>
+                <li>Ultimo incidente: {bache.lIncident}</li>
+                <li>Numero de incidentes: {bache.numIncidents}</li>
             </ul>
         </div>
     )
