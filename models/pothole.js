@@ -3,7 +3,9 @@ import mongoose from 'mongoose'
 const potholeSchema = mongoose.Schema({
   name: String,
   lat: Number,
-  long: Number,
+  lng: {
+    type: Number
+  },
   firstIncident: Date,
   lastIncident: Date,
   numIncidents: Number

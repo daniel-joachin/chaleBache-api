@@ -1,72 +1,68 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
+import React, { useContext, useEffect, useState, useCallback, memo } from 'react'
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { BacheContext } from '../components/bacheContext'
 import axios from 'axios';
 
-const style = {
-  width: '75vw',
-  height: '75vh',
-}
+function GoogleMaps (props) {
 
-function GoogleMapsContainer (props) {
+  const center = {
+    lat: 20.732,
+    lng: -103.456
+  }
+
+  const style = {
+    width: '75vw',
+    height: '75vh',
+  }
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyCK7OlpjunyTdWaF1NJ4RblpysJAWm1KBo"
+  })
+
+  const [map, setMap] = useState(null)
+  const  [potholes, setpotholes] = useState([])
+
   const { setBache } = useContext(BacheContext)
 
-const  [potholes, setpotholes] = useState([])
+  const onLoad = useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds();
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
+
+  const onUnmount = useCallback(function callback( map ) {
+    setMap(null)
+  }, [])
 
   const changeBache = (obj) => {
     setBache(obj)
   }
 
-
-
   useEffect(()=>{
+    axios.get('http://localhost:3030/api/potholes').then(res=>setpotholes(res.data) ).catch(err => console.log(err))
+  }, [])
 
-      axios.get('/api/pothole').then(res=>setpotholes(res.data))
-   })
-
-  return (
-    <Map
-      item
-      xs = { 12 }
-      style = { style }
-      google = { props.google }
-      zoom = { 14 }
-      initialCenter = {{ lat: 20.733, lng: -103.452 }}
-    >
-      {potholes.forEach(pothole => {
+  return isLoaded ? (
+      <GoogleMap
+        mapContainerStyle={style}
+        center={center}
+        zoom={17}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
         <Marker
-        onClick = {(props)=>{changeBache({ title: props.title, name: props.name, 
-          fIncident: props.fIncident, lIncident: props.lIncident, numIncidents: props.numIncidents })}}
-        title = { pothole.name}
-        position = {{ lat: pothole.lat, lng: pothole.long }}
-        //name = { 'Lord Bache' }
-        fIncident = {pothole.firstIncident}
-        lIncident = {pothole.lastIncident}
-        numIncidents = {pothole.numIncidents}
-      />
-      })}
-
-      {/* <Marker
-        onClick = {(props)=>{changeBache({ title: props.title, name: props.name, 
-          fIncident: props.fIncident, lIncident: props.lIncident, numIncidents: props.numIncidents })}}
-        title = { 'Bache 1' }
-        position = {{ lat: 20.733, lng: -103.452 }}
-        //name = { 'Lord Bache' }
-        fIncident = '06/05/2021'
-        lIncident = '06/05/2021'
-        numIncidents = {1}
-      /> */}
-
-      {/* referencia */}
-      {/* <Marker
-        onClick = {(props)=>{changeBache({ title: props.title, name: props.name })}}
-        title = { 'Bache 2' }
-        position = {{ lat: 20.744, lng: -103.452 }}
-        //name = { 'Señor Bache' }
-      /> */}
-      
-    </Map>
-  );
+          position={{lat: 20.735, lng: -103.405}}
+        />
+        {potholes.map((pothole,i) => {
+          return (<Marker
+                    key={i}
+                    onClick={() => changeBache(pothole)}
+                    position={{lat: pothole.lat, lng: pothole.lng}}
+                  />)
+        })}
+      </GoogleMap>
+  ) : <></>
 }
 
-export default GoogleApiWrapper({ api: 'AIzaSyCK7OlpjunyTdWaF1NJ4RblpysJAWm1KBo'})(GoogleMapsContainer)
+export default memo(GoogleMaps)

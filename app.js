@@ -2,6 +2,7 @@ import createError from 'http-errors'
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
+import cors from 'cors'
 import { config } from 'dotenv'
 
 import potholeRouter from './routes/pothole.js'
@@ -20,8 +21,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors())
 
-app.use('/admin', adminRouter);
+app.use('/admin', adminRouter)
 app.use('/api/potholes', potholeRouter);
 
 // catch 404 and forward to error handler
