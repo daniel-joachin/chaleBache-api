@@ -1,5 +1,5 @@
 .infoBaches{
-    padding-left: 1.5vw;
+    margin-left: 1vh;
     list-style-type: none;
     
 }
@@ -7,6 +7,9 @@
 .infoBaches ul{
     list-style-type: none;
     text-align: left;
+    margin-right: 1vh;
+    border-radius: 5px;
+    margin-bottom: 4vw;
     
 }
 #bacheName{
@@ -17,4 +20,9 @@
 
 .infoBaches li{
     margin-bottom: 1vh;
+    background-color:#8ee0ed;
+    margin-right: 4vh;
+    border-radius: 5px;
+    margin-bottom: 1vh;
+    font-family: sans-serif;
 }

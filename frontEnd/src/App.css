@@ -36,6 +36,10 @@
   display: grid;
  }
 
+ .l{
+   border-radius: 5px;
+ }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

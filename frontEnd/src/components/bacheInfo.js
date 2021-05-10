@@ -10,8 +10,8 @@ function BacheInfo () {
             <ul>
                 {/* <li>{bache.name}</li> */}
                 <li id="bacheName">{bache.name}</li>
-                <li>Fecha de nacimiento:  {bache.firstIncident}</li>
-                <li>Ultimo incidente: {bache.lastIncident}</li>
+                <li>Fecha de nacimiento:  {bache.firstIncident?.toString().substring(0,10)}</li>
+                <li>Ultimo incidente: {bache.lastIncident?.toString().substring(0,10)}</li>
                 <li>Numero de incidentes: {bache.numIncidents}</li>
             </ul>
         </div>

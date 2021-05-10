@@ -47,13 +47,13 @@ function GoogleMaps (props) {
       <GoogleMap
         mapContainerStyle={style}
         center={center}
-        zoom={17}
+        zoom={16}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        <Marker
+        {/* <Marker
           position={{lat: 20.735, lng: -103.405}}
-        />
+        /> */}
         {potholes.map((pothole,i) => {
           return (<Marker
                     key={i}

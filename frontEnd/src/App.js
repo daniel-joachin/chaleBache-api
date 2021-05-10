@@ -14,7 +14,7 @@ function App() {
       
       <div className="wrapper">
         <BacheProvider>
-          <Map className="l"/>
+          <Map class="l"/>
           <BacheInfo name="x" location="1,2" seriedad="10" className="infos"/>
         </BacheProvider>
         
