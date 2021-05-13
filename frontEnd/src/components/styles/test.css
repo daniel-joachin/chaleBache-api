@@ -1,24 +1,13 @@
 .testHeader{
     background: #3f5179;
+    /* height: 10vh; */
     
-    height: 10vh;
-    font-weight: 100%;
-    margin-bottom: 3vh;
-    margin-top: -3vh;
-    margin-left: .5vh;
-    margin-right: .5vh;
-    
-    border-radius: 10px;
     line-height: 10vh;
-    
-    
 }
 
 #titulo{
     text-align: center;
     font-family: Krone;
     color: #8ee0ed;
-}
-.app{
-    display: flex;
+    font-size: 40px
 }

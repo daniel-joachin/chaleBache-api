@@ -29,7 +29,22 @@
   color: #61dafb;
 }
 
+.headE{
+  grid-template-columns: 1fr 1fr 1fr ;
+  display: grid;
+  background: #3f5179;
+  margin-bottom: 3vh;
+  
+}
 
+#testsito{
+  margin-top: 50%;
+}
+
+#adminsito{
+  right: 0;
+  background-color: cyan;
+}
 
 .wrapper {
   grid-template-columns: 3fr 1fr ;

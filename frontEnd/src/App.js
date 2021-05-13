@@ -1,24 +1,28 @@
 import './App.css';
-import Test from './components/test';
-import Map from './components/map';
-import BacheInfo from './components/bacheInfo';
-import React from 'react';
-import { BacheProvider } from './components/bacheContext';
+import MainUserPage from'./components/mainUsersApp';
+import LoginAdminPage from './components/adminLogin';
 
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
+        <Router>
+          <Switch>
+            <Route path='/login'>
+                <LoginAdminPage></LoginAdminPage>
+            </Route>
+            <Route path='/'>
+              <MainUserPage></MainUserPage>
+            </Route>
+          </Switch>
+        </Router>
 
-      <Test/>
-      
-      <div className="wrapper">
-        <BacheProvider>
-          <Map class="l"/>
-          <BacheInfo name="x" location="1,2" seriedad="10" className="infos"/>
-        </BacheProvider>
         
-      </div>
+      
+      
+      
     </div>
   );
 }
