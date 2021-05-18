@@ -1,5 +1,6 @@
 import express from 'express'
 import Pothole from '../models/pothole.js'
+import Sensors from '../models/sensors.js'
 
 const router = express.Router()
 
@@ -25,6 +26,14 @@ router.post('/', async(req,res) => {
     res.json({
       message: error.message
     })
+  }
+})
+
+router.post('/batch', async(req,res) => {
+  try {
+    const { sensorsArray } = req.body
+  } catch (error) {
+    res.sendStatus(400)
   }
 })
 
