@@ -1,6 +1,6 @@
 import express from 'express'
 import Pothole from '../models/pothole.js'
-import Sensors from '../models/sensors.js'
+import DataSession from '../models/dataSession.js'
 
 const router = express.Router()
 
@@ -31,7 +31,14 @@ router.post('/', async(req,res) => {
 
 router.post('/batch', async(req,res) => {
   try {
-    const { sensorsArray } = req.body
+    const { accelerometer, gyroscope } = req.body
+    const data = await DataSession.create({
+      accelerometer,
+      gyroscope
+    })
+    res.json(
+      data
+    )
   } catch (error) {
     res.sendStatus(400)
   }
