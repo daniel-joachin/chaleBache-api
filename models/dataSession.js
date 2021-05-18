@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 
 const dataSessionSchema = mongoose.Schema({
-  accelerometer: [Number],
-  gyroscope: [Number]
+  accelerometer: [mongoose.Schema.Types.Mixed],
+  gyroscope: [mongoose.Schema.Types.Mixed]
 }, {
   timestamps: true
 })
