@@ -44,6 +44,17 @@ router.post('/batch', async(req,res) => {
   }
 })
 
+router.get('/batch', async(req,res) => {
+  try {
+    const data = await DataSession.find({})
+    res.json(
+      data
+    )
+  } catch (error) {
+    res.sendStatus(404)
+  }
+})
+
 router.get('/', async(req,res) => {
   try {
     const potholes = await Pothole.find({})
