@@ -16,6 +16,9 @@ function App() {
             <Route path='/'>
               <MainUserPage></MainUserPage>
             </Route>
+            <Route path='/admins'>
+              <MainUserPage></MainUserPage>
+            </Route>
           </Switch>
         </Router>
 
