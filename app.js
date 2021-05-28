@@ -3,6 +3,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import cors from 'cors'
+import path from 'path'
 
 import potholeRouter from './routes/pothole.js'
 import adminRouter from './routes/admin.js'
@@ -21,12 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors())
 
+app.get('/', (req, res) => {
+  express.static(path.join(__dirname, "frontEnd","build"))
+})
+
 app.use('/admin', adminRouter)
 app.use('/api/potholes', potholeRouter);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/frontEnd/public/index.html'))
-})
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
