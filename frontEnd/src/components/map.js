@@ -40,7 +40,7 @@ function GoogleMaps (props) {
   }
 
   useEffect(()=>{
-    axios.get('http://localhost:3030/api/potholes').then(res=>setpotholes(res.data) ).catch(err => console.log(err))
+    axios.get('/api/potholes').then(res=>setpotholes(res.data) ).catch(err => console.log(err))
   }, [])
 
   return isLoaded ? (
