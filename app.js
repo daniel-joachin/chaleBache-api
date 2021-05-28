@@ -24,6 +24,10 @@ app.use(cors())
 app.use('/admin', adminRouter)
 app.use('/api/potholes', potholeRouter);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/frontEnd/public/index.html'))
+})
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
