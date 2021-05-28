@@ -3,14 +3,12 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import cors from 'cors'
-import { config } from 'dotenv'
 
 import potholeRouter from './routes/pothole.js'
 import adminRouter from './routes/admin.js'
 
 import db from './config/db.js'
 
-config()
 db()
 
 const app = express();

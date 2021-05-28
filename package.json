@@ -5,7 +5,7 @@
   "type": "module",
   "proxy": "http://localhost:3000",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www & cd frontEnd/ && npm start"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.1.1",
