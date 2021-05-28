@@ -25,14 +25,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors())
 
-app.get('/', (req, res) => {
-  // express.static(path.join(__dirname, "frontEnd/build", "index.html"))
-  res.sendFile(path.join(__dirname, "frontEnd/build", "index.html"))
-})
+app.use(express.static(path.join(__dirname, "frontEnd/build")))
 
 app.use('/admin', adminRouter)
 app.use('/api/potholes', potholeRouter);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/frontEnd/build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
