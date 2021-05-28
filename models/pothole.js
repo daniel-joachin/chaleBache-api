@@ -1,16 +1,18 @@
-import thinky from '../config/thinky.js'
+import mongoose from 'mongoose'
 
-const type = thinky.type
-const r = thinky.r
-
-const Pothole = thinky.createModel('Pothole', {
-  id: type.string().default(r.uuid()),
-  name: type.string(),
-  location: {
-    latitude: type.number(),
-    longitud: type.number()
+const potholeSchema = mongoose.Schema({
+  name: String,
+  lat: Number,
+  lng: {
+    type: Number
   },
-  createdAt: type.date().default(r.now())
+  firstIncident: Date,
+  lastIncident: Date,
+  numIncidents: Number
+}, {
+  timestamps: true
 })
+
+const Pothole = mongoose.model('Pothole', potholeSchema)
 
 export default Pothole
