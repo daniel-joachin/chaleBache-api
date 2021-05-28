@@ -3,7 +3,10 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import cors from 'cors'
-import path from 'path'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 import potholeRouter from './routes/pothole.js'
 import adminRouter from './routes/admin.js'
@@ -23,7 +26,8 @@ app.use(cookieParser());
 app.use(cors())
 
 app.get('/', (req, res) => {
-  express.static(path.join(__dirname, "frontEnd","build"))
+  // express.static(path.join(__dirname, "frontEnd/build", "index.html"))
+  res.sendFile(path.join(__dirname, "frontEnd/build", "index.html"))
 })
 
 app.use('/admin', adminRouter)
