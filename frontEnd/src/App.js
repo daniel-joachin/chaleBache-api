@@ -1,6 +1,7 @@
 import './App.css';
 import MainUserPage from'./components/mainUsersApp';
 import LoginAdminPage from './components/adminLogin';
+import MainAdminCRUD from './components/mainAdminCrud';
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -10,14 +11,14 @@ function App() {
     <div className="App">
         <Router>
           <Switch>
-            <Route path='/login'>
-                <LoginAdminPage></LoginAdminPage>
+            <Route exact path='/login'>
+              <LoginAdminPage></LoginAdminPage>
             </Route>
-            <Route path='/'>
+            <Route exact path='/'>
               <MainUserPage></MainUserPage>
             </Route>
-            <Route path='/admins'>
-              <MainUserPage></MainUserPage>
+            <Route exact path='/admins' component={MainAdminCRUD}>
+              <MainAdminCRUD/>
             </Route>
           </Switch>
         </Router>

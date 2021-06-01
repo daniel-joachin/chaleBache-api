@@ -4,7 +4,6 @@ import './styles/info.css'
 
 function BacheInfo () {
     const { bache } = useContext(BacheContext)
-
     return (
         <div className="infoBaches">
             <ul>
@@ -26,9 +25,6 @@ function BacheInfo () {
                     <li id="numB">Noticia #5 </li>
                 </ul>
             </div>
-            
-
-
         </div>
     )
 }
