@@ -13,10 +13,10 @@ function BacheInfo () {
                 <li id="ultiB">Ultimo incidente: {bache.lastIncident?.toString().substring(0,10)}</li>
                 <li id="numB">Numero de incidentes: {bache.numIncidents}</li>
             </ul>
-
+            {/* 
             <div id="bacheLogs" style={{'justifyContent':'end', 'position':'absolute','bottom':'0'}}>
                 <ul>
-                    {/* <li>{bache.name}</li> */}
+
                     <li id="bacheName">Actualizaciones</li>
                     <li id="fechaB">Noticia #1   </li>
                     <li id="ultiB">Noticia #2 </li>
@@ -24,7 +24,8 @@ function BacheInfo () {
                     <li id="ultiB">Noticia #4 </li>
                     <li id="numB">Noticia #5 </li>
                 </ul>
-            </div>
+            </div> 
+        */}
         </div>
     )
 }

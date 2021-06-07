@@ -3,7 +3,9 @@ import './styles/adminLogin.css'
 import axios from 'axios'
 import { Route } from 'react-router'
 import {useHistory} from 'react-router-dom'
+import Cookies from 'react-cookie'
 
+const cookies = new Cookies();
 
 const AdminLogin =  () =>  {
         const [data, setData] = useState({username:'',password:''})
@@ -15,7 +17,7 @@ const AdminLogin =  () =>  {
         const sendLogin = async() =>{
 
             const resp = await axios.post('http://localhost:3030/admin/login', {"username": data.username, "password":data.password}).then(
-                resp => history.push('/admins')
+                resp =>{cookies.set("chaleBache-admin",{path:'/'}); history.push('/admins')}
                 
             )
         }

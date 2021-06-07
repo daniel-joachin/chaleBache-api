@@ -8,6 +8,11 @@
     border: none;
 }
 
+
+#inputModify{
+    color: black;
+}
+
 .crudButton:hover{
     cursor:pointer;
     

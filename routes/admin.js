@@ -29,7 +29,7 @@ router.post('/login', async(req,res) =>{
       throw new Error('Admin not found')
 
     }
-    
+    res.cookie("chaleBache-admin",admin.username,{httpOnly:true})
     
     res.json(admin)
   } catch (error) {
