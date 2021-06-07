@@ -3,14 +3,16 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import cors from 'cors'
-import { config } from 'dotenv'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 import potholeRouter from './routes/pothole.js'
 import adminRouter from './routes/admin.js'
 
 import db from './config/db.js'
 
-config()
 db()
 
 const app = express();
@@ -23,8 +25,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors())
 
+app.use(express.static(path.join(__dirname, "frontEnd/build")))
+
 app.use('/admin', adminRouter)
 app.use('/api/potholes', potholeRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/frontEnd/build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -39,7 +47,6 @@ app.use( (err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  
 });
 
 export default app
