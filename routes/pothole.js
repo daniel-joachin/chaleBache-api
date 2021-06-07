@@ -1,27 +1,27 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import faker from 'faker'
 import Pothole from '../models/pothole.js'
 import DataSession from '../models/dataSession.js'
 
 const router = express.Router()
-
+faker.locale = "es_MX"
 router.post('/', async(req,res) => {
   try {
-    const { name, lat, lng, firstIncident, lastIncident, numIncidents } = req.body
-    if( !name ) {
-      throw Error('Missing fields')
+    const { locations } = req.body
+    
+    for(const location of locations){
+      await Pothole.create({
+        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        lat:location.lat,
+        long:location.long,
+        firstIncident: Date(),
+        lastIncident: Date(),
+        numIncidents: faker.datatype.number()
+      })
     }
-    const pothole = await Pothole.create({
-      name,
-      lat,
-      lng,
-      firstIncident,
-      lastIncident,
-      numIncidents
-    })
-    res.json(
-      pothole
-    )
+
+    res.status(200)
   } catch (error) {
     res.status(400)
     res.json({

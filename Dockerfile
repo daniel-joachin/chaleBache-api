@@ -7,4 +7,4 @@ RUN yarn
 
 EXPOSE 5555
 
-CMD ["npm", "run", "start"]
+CMD ["yarn","start"]
