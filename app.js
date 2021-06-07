@@ -1,35 +1,30 @@
 import createError from 'http-errors'
 import express from 'express'
-import { dirname } from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
-import { fileURLToPath } from 'url'
-import r from 'rethinkdb'
+import cors from 'cors'
 import { config } from 'dotenv'
 
 import potholeRouter from './routes/pothole.js'
 import adminRouter from './routes/admin.js'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+import db from './config/db.js'
 
-r.connect({
-  host: process.env.RETHINKDB_HOST,
-  port: process.env.RETHINKDB_PORT,
-  db: process.env.RETHINKDB_NAME
-})
+config()
+db()
 
 const app = express();
 
 // view engine setup
-app.use(express.static(__dirname + '/public'));
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors())
 
-app.use('/admin', adminRouter);
-app.use('/api/pothole', potholeRouter);
+app.use('/admin', adminRouter)
+app.use('/api/potholes', potholeRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -44,7 +39,7 @@ app.use( (err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  
 });
 
 export default app
