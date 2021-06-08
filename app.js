@@ -27,12 +27,13 @@ app.use(cors())
 
 app.use(express.static(path.join(__dirname, "frontEnd/build")))
 
+app.get('/', (req,res) =>{
+  res.json({
+    message: 'API up and running'
+  })
+})
 app.use('/admin', adminRouter)
 app.use('/api/potholes', potholeRouter);
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/frontEnd/build/index.html'));
-});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -49,6 +50,6 @@ app.use( (err, req, res, next) => {
   res.status(err.status || 500);
 });
 
-app.listen(3030, () => {})
-
-export default app
+app.listen(3030, () => {
+  console.log('listeining...');
+})
