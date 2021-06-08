@@ -1,10 +1,15 @@
-FROM node:14.15.5-alpine3.13
+FROM node:14-alpine
 
-WORKDIR /home/api/
-COPY ./ /home/api/
+# set working directory
+WORKDIR /home/client/
+COPY . /home/client
 
+# install app dependencies
+COPY package.json ./
+COPY yarn.lock ./
 RUN yarn
 
-EXPOSE 5555
+EXPOSE 3030
 
+# start app
 CMD ["yarn","start"]

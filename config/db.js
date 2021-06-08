@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 
 const connection = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    const MONGO_URI="mongodb+srv://serviceUser:19mEccSsFE8R68cE@cluster0.o6w2p.mongodb.net/chalebache?retryWrites=true&w=majority"
+    await mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,

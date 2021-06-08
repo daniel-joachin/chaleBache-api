@@ -9,19 +9,17 @@ faker.locale = "es_MX"
 router.post('/', async(req,res) => {
   try {
     const { locations } = req.body
-    
     for(const location of locations){
       await Pothole.create({
         name: `${faker.name.firstName()} ${faker.name.lastName()}`,
         lat:location.lat,
-        long:location.long,
+        lng:location.long,
         firstIncident: Date(),
         lastIncident: Date(),
         numIncidents: faker.datatype.number()
       })
     }
-
-    res.status(200)
+    res.sendStatus(200)
   } catch (error) {
     res.status(400)
     res.json({
@@ -59,7 +57,8 @@ router.get('/batch', async(req,res) => {
 router.get('/', async(req,res) => {
   try {
     const potholes = await Pothole.find({})
-    res.json(
+    res.status(200).
+    json(
       potholes
     )
   } catch (error) {
