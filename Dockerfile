@@ -9,7 +9,7 @@ COPY package.json ./
 COPY yarn.lock ./
 RUN yarn
 
-EXPOSE 3030
+EXPOSE 5555
 
 # start app
 CMD ["yarn","start"]
