@@ -33,7 +33,7 @@ app.get('/', (req,res) =>{
   })
 })
 app.use('/admin', adminRouter)
-app.use('/api/potholes', potholeRouter);
+app.use('/api/potholes/', potholeRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
